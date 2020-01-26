@@ -6,8 +6,12 @@ Created on Fri Jan 24 17:28:44 2020
 """
 
 
+print("Write your name:")
 
-print("Hello World!")
+input1 = input()
+
+print("Hello " + input1 + "!")
+
 
 
 
