@@ -6,22 +6,31 @@ Created on Fri Jan 24 18:17:47 2020
 """
 
 
+# import os
 import secrets
 import hashlib
 
 
 
 # Generate a 128-bit number
+# number = os.urandom(128)
 number = secrets.randbits(128)
 
 # Convert it to binary
+# binary = bin(int.from_bytes(bytes=number, byteorder='little'))[2:]
 binary = bin(number)[2:]
-len(binary)
+print('The length of the binary number generated is: ' + str(len(binary)))
+
+if len(binary) < 128:
+    added_zeros = '0' * (128 - len(str(binary)))
+    binary = added_zeros + binary
+    print('Added ' + str(len(added_zeros)) + ' zeros.')
 
 
 # SHA256 in binary - from the first to the fourth character (out of 256)
 hash = hashlib.sha256(binary.encode())
 checksum = bin(int(hash.hexdigest(), 16))[2:6]
+print('Checksum: ' + checksum)
 
 
 # We obtain a 132-bit string
@@ -49,7 +58,7 @@ for i in range(len(seed_words)):
     seed_words[i] = BIP39_list[seed_words[i]]
 
 
-print(seed_words)
+print('\nSeed: \n' + seed_words)
 
 
 
