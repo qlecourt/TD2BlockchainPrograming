@@ -5,21 +5,21 @@
 > hello.py:
 
 This is a simple and interactive program that asks the user to input his name.
-It prints "Hello [name]!"\n\n
+It prints "Hello [name]!"
 
 
 > script1.py:
 
-We need first to import the hashlib library.\n
+We need first to import the hashlib library. 
 It allows us to use the `sha256()` function.
 
-First, we generate a random number and convert it in binary.\n
-If it has a length smaller than 128, we add zeros on the left to get the correct length.\n
+First, we generate a random number and convert it in binary. 
+If it has a length smaller than 128, we add zeros on the left to get the correct length. 
 We use the hash function `sha256()` and only keep the 4 first bits in binary.
 
 Then, we make a string composed by:
 - the 128-bit number,
-- the 4-bit checksum,\n
+- the 4-bit checksum, 
 so its length is exactly 132 bits.
 
 We initialize `list`, containing 11 elements where the string is divided into 12-character substrings.
