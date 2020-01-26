@@ -19,18 +19,17 @@ number = secrets.randbits(128)
 # Convert it to binary
 # binary = bin(int.from_bytes(bytes=number, byteorder='little'))[2:]
 binary = bin(number)[2:]
-print('The length of the binary number generated is: ' + str(len(binary)))
+print('\nThe length of the binary number generated is: ' + str(len(binary)))
 
 if len(binary) < 128:
     added_zeros = '0' * (128 - len(str(binary)))
     binary = added_zeros + binary
-    print('Added ' + str(len(added_zeros)) + ' zeros.')
+    print('Added ' + str(len(added_zeros)) + ' zero(s).\n')
 
 
 # SHA256 in binary - from the first to the fourth character (out of 256)
 hash = hashlib.sha256(binary.encode())
 checksum = bin(int(hash.hexdigest(), 16))[2:6]
-print('Checksum: ' + checksum)
 
 
 # We obtain a 132-bit string
@@ -58,7 +57,8 @@ for i in range(len(seed_words)):
     seed_words[i] = BIP39_list[seed_words[i]]
 
 
-print('\nSeed: \n' + seed_words)
+print('\nSeed: ')
+print(seed_words)
 
 
 
