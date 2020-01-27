@@ -173,7 +173,7 @@ elif choice == '2':
         if choice == '2':
             index = input('Input an index between 0 and 4 294 967 295: ')
             index = bin(int(index))
-            M = input('Level of derivation: ')
+            M = int(input('Level of derivation: '))
             
             string = CreateString(private_key, chain_code)
             
@@ -184,15 +184,19 @@ elif choice == '2':
             
             print('Child private key: ' + child_private_key)
             
-            for m in range(int(M)-1):
-                string = CreateString(child_private_key, child_chain_code)
-                
-                hash = hash512(string)
-                
-                child_private_key = hash[:256]
-                child_chain_code = hash[-256:]
-                
-                print('Child private key: ' + child_private_key)
+            
+            if M < 1:
+                print('Error: M should be greater than 1.')
+            elif M > 1:
+                for m in range(M-1):
+                    string = CreateString(child_private_key, child_chain_code)
+                    
+                    hash = hash512(string)
+                    
+                    child_private_key = hash[:256]
+                    child_chain_code = hash[-256:]
+                    
+                    print('Child private key: ' + child_private_key)
             
     
     
