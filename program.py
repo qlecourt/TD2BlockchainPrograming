@@ -83,7 +83,7 @@ elif choice == '2':
         for i in range(12):
             
             if valid == True:
-                n = input("Entrer le mot n°" + str(i+1) + ": ")
+                n = input("Input the word n°" + str(i+1) + ": ")
                 
                 for j in range(2048):
                     if n == BIP39_list[j]:

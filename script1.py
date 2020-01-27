@@ -55,7 +55,10 @@ for i in range(len(seed_words)):
 
 
 print('\nMnemonic seed: ')
-print(seed_words)
+print(result + '\n')
+print(string + '\n')
+print(hash + '\n')
+print(len(hash))
 
 
 
