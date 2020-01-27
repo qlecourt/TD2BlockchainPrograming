@@ -1,8 +1,19 @@
 # TD2BlockchainPrograming
 
 
-
 > program.py
+
+*How to use:*
+
+The user can choose to create a random mnemonic seed or to check a seed. 
+In the second case, it needs to get the 12 words to check if the key is valid or not. 
+If the key is valid, the user can ask to extract the master private key and the master chain code. 
+Then, the user selects if he wants to generate a child key with the index only or with a level of derivation (M should be greater than 1). 
+The program prints the important informations at the end of each step.
+
+
+
+*Details:*
 
 This file contains:
 - a menu that asks the user to choose a functionality. If the users inputs a wrong number, it prints an error;
@@ -11,7 +22,7 @@ This file contains:
 
 The verification part checks if the input by the user are in the BIP39 list. If not, the program is stopped. 
 Then, it rebuilds the initial string (binary and checksum) from the words. The checksum should be equal to the hash of the initial number.
-Lastly, it prints a message to inform the user if the key is valid or not. 
+Lastly, it prints a message to inform the user if the key is valid or not.
 
 
 
