@@ -53,6 +53,9 @@ for i in range(len(seed_words)):
     seed_words[i] = int(list[i], 2)
     seed_words[i] = BIP39_list[seed_words[i]]
 
+result = seed_words[0]
+for i in range(1, len(seed_words)):
+    result = result + ' ' + seed_words[i]
 
 print('\nMnemonic seed: ')
 print(result + '\n')
