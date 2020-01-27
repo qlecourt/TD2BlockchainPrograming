@@ -27,13 +27,13 @@ This file contains:
 
 
 
-> hello.py:
+> hello.py
 
 This is a simple and interactive program that asks the user to input his name.
 It prints "Hello [name]!"
 
 
-> script1.py:
+> script1.py
 
 We need first to import the secrets and hashlib libraries, secrets is used to create a random number and the second one allows us to use the `sha256()` function.
 
