@@ -21,10 +21,11 @@ Then, we make a string composed by:
 - the 4-bit checksum, 
 so its length is exactly 132 bits.
 
-We initialize `list`, containing 11 elements where the string is divided into 12-character substrings.
+We initialize `list`, containing 12 elements where the string is divided into 11-character substrings.
 
 We input the BIP39 list of words (2048 words).
 
-Each element of `list` is set into seed_words as integer and is replaced by the corresponding word.
+Each element of `list` is set into seed_words as integer and is replaced by the corresponding word. 
+We finally obtain a list of 12 words: the mnemonic seed.
 
 
