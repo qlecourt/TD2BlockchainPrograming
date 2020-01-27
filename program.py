@@ -10,7 +10,7 @@ import hashlib
 
 
 
-choice = input('\nWhat do you want to do?\n 1 - Create a seed\n 2 - Check a mnemonic seed\n\n')
+choice = input('\nWhat do you want to do?\n 1 - Create a seed\n 2 - Check a mnemonic seed\n 0 - Quit\n\n')
 
 
 # BIP39 list
@@ -19,6 +19,7 @@ BIP39_list = ["abandon","ability","able","about","above","absent","absorb","abst
 
 
 if choice == '1':
+    
     # Generate a 128-bit number
     number = secrets.randbits(128)
     
@@ -70,22 +71,17 @@ if choice == '1':
         result = result + ' ' + seed_words[i]
 
     print('\nMnemonic seed: ')
-    print(result + '\n')
-    print(string + '\n')
-    print(hash + '\n')
-    print(len(hash))
-   
- 
-    
-if choice == '2':
-    
+    print(result)
 
+
+elif choice == '2':
     def importSeedMnemonique():
         get_bin = lambda x, n: format(x, 'b').zfill(n)
         tabDeMots = [''] * 12
         valid = True
         
         for i in range(12):
+            
             if valid == True:
                 n = input("Entrer le mot n°" + str(i+1) + ": ")
                 
@@ -97,24 +93,30 @@ if choice == '2':
                         print('The word is not valid. You might have misspelled it.')
                         valid = False
                     
-        
-        # initialString: binary + checksum
-        initialString = "".join(tabDeMots)
-        initialNumberInBinary = (str(initialString)[:-4])
-        CheckSumInBinary = abs(int(initialString)) % 10000  # 4 last numbers
-        #initialNumber = int(initialNumberInBinary, 2)
-        CheckSum = int(str(CheckSumInBinary), 2)
-        
-        initialNumberHash = hashlib.sha256(str(initialNumberInBinary).encode())
-        initialNumberHashInBinary = get_bin(int(initialNumberHash.hexdigest(), 16), 252)
-        
-        if int(str(initialNumberHashInBinary)[:4], 2) == CheckSum :
-                print("The key is valid.")
+        if valid == True:
+            # initialString: binary + checksum
+            initialString = "".join(tabDeMots)
+            initialNumberInBinary = (str(initialString)[:-4])
+            CheckSumInBinary = abs(int(initialString)) % 10000  # 4 last numbers
+            #initialNumber = int(initialNumberInBinary, 2)
+            CheckSum = int(str(CheckSumInBinary), 2)
+            
+            initialNumberHash = hashlib.sha256(str(initialNumberInBinary).encode())
+            initialNumberHashInBinary = get_bin(int(initialNumberHash.hexdigest(), 16), 252)
+            
+            if int(str(initialNumberHashInBinary)[:4], 2) == CheckSum :
+                    print("The key is valid.")
+            
+            else:
+                print("The key is not valid.")
                 
     importSeedMnemonique()
-
-
-
+    
+    
+elif choice == '0':
+    print('bye')
+    
+    
 else:
     print('Error: You have to input the number of the option.')
                 
