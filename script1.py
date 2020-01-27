@@ -6,25 +6,22 @@ Created on Fri Jan 24 18:17:47 2020
 """
 
 
-# import os
 import secrets
 import hashlib
 
 
 
 # Generate a 128-bit number
-# number = os.urandom(128)
 number = secrets.randbits(128)
 
 # Convert it to binary
-# binary = bin(int.from_bytes(bytes=number, byteorder='little'))[2:]
 binary = bin(number)[2:]
 print('\nThe length of the binary number generated is: ' + str(len(binary)))
 
 if len(binary) < 128:
     added_zeros = '0' * (128 - len(str(binary)))
     binary = added_zeros + binary
-    print('Added ' + str(len(added_zeros)) + ' zero(s).\n')
+    print('Added ' + str(len(added_zeros)) + ' zero(s).')
 
 
 # SHA256 in binary - from the first to the fourth character (out of 256)
@@ -57,7 +54,7 @@ for i in range(len(seed_words)):
     seed_words[i] = BIP39_list[seed_words[i]]
 
 
-print('\nSeed: ')
+print('\nMnemonic seed: ')
 print(seed_words)
 
 
