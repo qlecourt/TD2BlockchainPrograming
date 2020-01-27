@@ -2,6 +2,19 @@
 
 
 
+> program.py
+
+This file contains:
+- a menu that asks the user to choose a functionality. If the users inputs a wrong number, it prints an error;
+- a first part that creates a random mnemonic seed (cf. script1.py);
+- a second part in which the user needs to input the 12 words of a mnemonic seed to check if it is valid.
+
+The verification part checks if the input by the user are in the BIP39 list. If not, the program is stopped. 
+Then, it rebuilds the initial string (binary and checksum) from the words. The checksum should be equal to the hash of the initial number.
+Lastly, it prints a message to inform the user if the key is valid or not. 
+
+
+
 > hello.py:
 
 This is a simple and interactive program that asks the user to input his name.
