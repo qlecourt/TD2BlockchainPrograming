@@ -3,7 +3,7 @@
 
 > program.py
 
-*How to use:*
+**How to use:**
 
 The user can choose to create a random mnemonic seed or to check a seed. 
 In the second case, it needs to get the 12 words to check if the key is valid or not. 
@@ -13,16 +13,17 @@ The program prints the important informations at the end of each step.
 
 
 
-*Details:*
+**Details:**
 
 This file contains:
+- 2 imported libraries;
+- the BIP39 list of 2048 words;
+- the user-defined functions, the 1st one is the verification of 12 input words and keeps the table with the binary numbers corresponding to these words, an other function to hash with ths SHA512 algorithm and a last one to concatenate strings;
 - a menu that asks the user to choose a functionality. If the users inputs a wrong number, it prints an error;
 - a first part that creates a random mnemonic seed (cf. script1.py);
-- a second part in which the user needs to input the 12 words of a mnemonic seed to check if it is valid.
-
-The verification part checks if the input by the user are in the BIP39 list. If not, the program is stopped. 
-Then, it rebuilds the initial string (binary and checksum) from the words. The checksum should be equal to the hash of the initial number.
-Lastly, it prints a message to inform the user if the key is valid or not.
+- a second part that calls the function `importSeedMnemonique()`;
+- if it is True (the key is valid), the user can choose to keep going and extract the master key and the master chain code, which are respectively the first and last 256 bits of the hash obtained with `sha512()`.
+- then the user can create a child key with an index or use a loop to get the desired level of derivation. To generate child keys and child indexes, we used the private key in the concatenation whereas it should be with the public key to make it easier.
 
 
 

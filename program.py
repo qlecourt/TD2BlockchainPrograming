@@ -47,9 +47,11 @@ def importSeedMnemonique():
             
             if int(str(initialNumberHashInBinary)[:4], 2) == CheckSum :
                     print("The key is valid.")
+                    return True
             
             else:
                 print("The key is not valid.")
+                return False
 
 
 def hash512(nb):
@@ -130,73 +132,73 @@ if choice == '1':
 
 elif choice == '2':
     
-    importSeedMnemonique()
-    
-    choice = input('\nDo you want to continue?\n 1 - Extract the master private key and the chain code\n 0 - Quit\n\n')
-    
-    
-    if choice == '1':
+    if importSeedMnemonique():
         
-        binary = tabDeMots[0]
+        choice = input('\nDo you want to continue?\n 1 - Extract the master private key and the chain code\n 0 - Quit\n\n')
         
-        for i in range(2, len(tabDeMots)):
-            binary = binary + tabDeMots[i]
-            
-        binary[:-4]        
-                
-        hash = hash512(binary)
-            
-        private_key = hash[:256]
-        chain_code = hash[-256:]
-        
-        print('\nThe master private key is: ' + private_key)
-        print('\nThe master chain code is: ' + chain_code)
-        
-        
-        choice = input('\nDo you want to continue?\n 1 - Generate a child key at the index N\n 2 - Generate a child key derivated M times\n 0 - Quit\n\n')
         
         if choice == '1':
-            index = input('Input an index between 0 and 4 294 967 295: ')
-            index = bin(int(index))
             
-            string = CreateString(private_key, chain_code)
+            binary = tabDeMots[0]
             
-            hash = hash512(string)
-            
-            child_private_key = hash[:256]
-            child_chain_code = hash[-256:]
-            
-            print('Child private key: ' + child_private_key)
-            
-            
-        if choice == '2':
-            index = input('Input an index between 0 and 4 294 967 295: ')
-            index = bin(int(index))
-            M = int(input('Level of derivation: '))
-            
-            string = CreateString(private_key, chain_code)
-            
-            hash = hash512(string)
-            
-            child_private_key = hash[:256]
-            child_chain_code = hash[-256:]
-            
-            print('Child private key: ' + child_private_key)
-            
-            
-            if M < 1:
-                print('Error: M should be greater than 1.')
-            elif M > 1:
-                for m in range(M-1):
-                    string = CreateString(child_private_key, child_chain_code)
+            for i in range(2, len(tabDeMots)):
+                binary = binary + tabDeMots[i]
+                
+            binary[:-4]        
                     
-                    hash = hash512(string)
-                    
-                    child_private_key = hash[:256]
-                    child_chain_code = hash[-256:]
-                    
-                    print('Child private key: ' + child_private_key)
+            hash = hash512(binary)
+                
+            private_key = hash[:256]
+            chain_code = hash[-256:]
             
+            print('\nThe master private key is: ' + private_key)
+            print('\nThe master chain code is: ' + chain_code)
+            
+            
+            choice = input('\nDo you want to continue?\n 1 - Generate a child key at the index N\n 2 - Generate a child key derivated M times (M>1)\n 0 - Quit\n\n')
+            
+            if choice == '1':
+                index = input('Input an index between 0 and 4 294 967 295: ')
+                index = bin(int(index))
+                
+                string = CreateString(private_key, chain_code)
+                
+                hash = hash512(string)
+                
+                child_private_key = hash[:256]
+                child_chain_code = hash[-256:]
+                
+                print('Child private key: ' + child_private_key)
+                
+                
+            if choice == '2':
+                index = input('Input an index between 0 and 4 294 967 295: ')
+                index = bin(int(index))
+                M = int(input('Level of derivation: '))
+                
+                string = CreateString(private_key, chain_code)
+                
+                hash = hash512(string)
+                
+                child_private_key = hash[:256]
+                child_chain_code = hash[-256:]
+                
+                print('Child private key: ' + child_private_key)
+                
+                
+                if M < 1:
+                    print('Error: M should be greater than 1.')
+                elif M > 1:
+                    for m in range(M-1):
+                        string = CreateString(child_private_key, child_chain_code)
+                        
+                        hash = hash512(string)
+                        
+                        child_private_key = hash[:256]
+                        child_chain_code = hash[-256:]
+                        
+                        print('Child private key: ' + child_private_key)
+                        
     
     
 elif choice == '0':
