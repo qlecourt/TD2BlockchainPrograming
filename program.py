@@ -52,6 +52,17 @@ def importSeedMnemonique():
                 print("The key is not valid.")
 
 
+def hash512(nb):
+            hash = hashlib.sha512(nb.encode())
+            hash = bin(int(hash.hexdigest(), 16))[2:]
+            
+            if len(hash) < 512:
+                added_zeros = '0' * (512 - len(hash))
+                hash = added_zeros + hash
+            
+            return hash
+
+
 def CreateString(a, b):
                 return a + b + index
             
@@ -117,8 +128,8 @@ if choice == '1':
 
 
 
-elif choice == '2':      
-          
+elif choice == '2':
+    
     importSeedMnemonique()
     
     choice = input('\nDo you want to continue?\n 1 - Extract the master private key and the chain code\n 0 - Quit\n\n')
@@ -131,19 +142,7 @@ elif choice == '2':
         for i in range(2, len(tabDeMots)):
             binary = binary + tabDeMots[i]
             
-        binary[:-4]
-        
-        
-        def hash512(nb):
-            hash = hashlib.sha512(nb.encode())
-            hash = bin(int(hash.hexdigest(), 16))[2:]
-            
-            if len(hash) < 512:
-                added_zeros = '0' * (512 - len(hash))
-                hash = added_zeros + hash
-            
-            return hash
-        
+        binary[:-4]        
                 
         hash = hash512(binary)
             
